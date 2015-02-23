@@ -1,4 +1,4 @@
-strict-date-array
+Date Array
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
@@ -17,18 +17,45 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 ## Usage
 
 ``` javascript
-var foo = require( 'validate.io-strict-date-array' );
+var isDateArray = require( 'validate.io-strict-date-array' );
 ```
 
-#### foo( value )
+#### isDateArray( value )
 
-What does this function do?
+Validates if a `value` is an `array` of `Date` objects.
+
+``` javascript
+var value = [ new Date(), new Date() ];
+
+var bool = isDateArray( value );
+// returns true
+```
+
+__Note__: the method will return `false` for an empty `array`.
 
 
 ## Examples
 
 ``` javascript
-var foo = require( 'validate.io-strict-date-array' );
+var isDateArray = require( 'validate.io-strict-date-array' );
+
+console.log( isDateArray( [new Date(), new Date()] ) );
+// returns true
+
+console.log( isDateArray( [new Date(), Date.now()] ) );
+// returns false
+
+console.log( isDateArray( ['72ms-ago'] ) );
+// returns false
+
+console.log( isDateArray( ['2015/02/21'] ) );
+// returns false
+
+console.log( isDateArray( [] ) );
+// returns false
+
+console.log( isDateArray( [{}] ) );
+// returns false
 ```
 
 To run the example code from the top-level application directory,
